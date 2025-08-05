@@ -46,7 +46,7 @@ async function getJIRADiff(target, source, link) {
             `git log origin/${target}..origin/${source} --oneline --no-merges \
 | grep -oE '[A-Z]{2,}-[0-9]+' \
 | sort -u \
-| sed 's|^|${link}|'`
+| sed 's|^|- ${link}|'`
         );
 
         if (stderr) {
