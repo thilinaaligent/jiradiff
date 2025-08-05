@@ -36,3 +36,7 @@ $ npx jiradiff
 
 Copied to clipboard!
 ```
+
+## Config
+
+JIRA link gets saved in `.jiradiff` for future use so you don't have to enter it again. This file gets automatically ignored by git since its added to `.git/info/exclude`
