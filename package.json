@@ -1,0 +1,16 @@
+{
+    "name": "jiradiff",
+    "version": "1.0.0",
+    "description": "Get a list of jira tickets based on the diff between 2 git branches",
+    "main": "index.js",
+    "bin": "./index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "thilinaaligent",
+    "repository": "https://github.com/thilinaaligent/jiradiff",
+    "homepage": "https://github.com/thilinaaligent/jiradiff#readme",
+    "license": "ISC",
+    "type": "commonjs"
+}
