@@ -4,6 +4,7 @@ import { promisify } from "util";
 import { exec } from "child_process";
 import { writeFileSync, readFileSync, existsSync } from "fs";
 import { intro, outro, text, isCancel, cancel } from "@clack/prompts";
+import clipboardy from "clipboardy";
 
 const execChildProcess = promisify(exec);
 const CONFIG_FILE_NAME = ".jiradiff";
@@ -55,8 +56,9 @@ async function getJIRADiff(target, source, link) {
         const result = stdout.trim();
 
         if (result) {
+            await clipboardy.write(result);
             outro(
-                `🎟️  JIRA tickets between \`${target}\` and \`${source}\`:\n\n${result}`
+                `🎟️  JIRA tickets between \`${target}\` and \`${source}\`:\n\n${result}\n\n Copied to clipboard!`
             );
         } else {
             outro("No JIRA tickets found between these branches.");
