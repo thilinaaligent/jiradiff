@@ -61,7 +61,9 @@ async function getJIRADiff(target, source, link) {
                 `🎟️  JIRA tickets between \`${target}\` and \`${source}\`:\n\n${result}\n\n Copied to clipboard!`
             );
         } else {
-            outro("No JIRA tickets found between these branches.");
+            outro(
+                "No JIRA tickets found between these branches. You may want to run git fetch origin before running JIRAdiff."
+            );
         }
     } catch (err) {
         console.error("Error:", err.message);
