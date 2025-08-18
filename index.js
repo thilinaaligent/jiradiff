@@ -39,8 +39,8 @@ async function saveJiraLink(jiraLink, alreadySaved) {
     }
 }
 
-// Fetches the JIRA ticket diff between two branches
-async function getJIRADiff(target, source, link) {
+// Fetches the Jira ticket diff between two branches
+async function getJiraDiff(target, source, link) {
     try {
         const { stdout, stderr } = await execChildProcess(
             `git log origin/${target}..origin/${source} --oneline --no-merges \
@@ -59,11 +59,11 @@ async function getJIRADiff(target, source, link) {
         if (result) {
             await clipboardy.write(result);
             outro(
-                `🎟️  Found ${result.split("\n").length} JIRA tickets between \`${target}\` and \`${source}\`:\n\n${result}\n\n Copied to clipboard!`
+                `🎟️  Found ${result.split("\n").length} Jira tickets between \`${target}\` and \`${source}\`:\n\n${result}\n\n Copied to clipboard!`
             );
         } else {
             outro(
-                "No JIRA tickets found between these branches. You may want to run git fetch origin before running JIRAdiff."
+                "No Jira tickets found between these branches. You may want to run git fetch origin before running Jiradiff."
             );
         }
     } catch (err) {
@@ -73,7 +73,7 @@ async function getJIRADiff(target, source, link) {
 
 // Start the script
 async function main() {
-    intro("🦒 JIRAdiff");
+    intro("🦒 Jiradiff");
 
     try {
         const targetBranch = await text({
@@ -92,10 +92,10 @@ async function main() {
 
         const savedJiraLink = await getSavedJiraLink();
         const jiraLink = await text({
-            message: "What's your JIRA browse link?",
+            message: "What's your Jira browse link?",
             placeholder: "e.g. https://client.atlassian.net/browse/",
             initialValue: savedJiraLink,
-            validate: (val) => requiredInput(val, "JIRA link"),
+            validate: (val) => requiredInput(val, "Jira link"),
         });
 
         if ([targetBranch, sourceBranch, jiraLink].some(isCancel)) {
@@ -104,7 +104,7 @@ async function main() {
         }
 
         await saveJiraLink(jiraLink, !!savedJiraLink);
-        await getJIRADiff(
+        await getJiraDiff(
             targetBranch.trim(),
             sourceBranch.trim(),
             jiraLink.trim()
