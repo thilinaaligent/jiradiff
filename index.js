@@ -44,6 +44,7 @@ async function getJIRADiff(target, source, link) {
     try {
         const { stdout, stderr } = await execChildProcess(
             `git log origin/${target}..origin/${source} --oneline --no-merges \
+| grep -oE '^[a-f0-9]+.[A-Z]{2,}-[0-9]+' \
 | grep -oE '[A-Z]{2,}-[0-9]+' \
 | sort -u \
 | sed 's|^|- ${link}|'`
