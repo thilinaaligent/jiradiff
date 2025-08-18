@@ -59,7 +59,7 @@ async function getJIRADiff(target, source, link) {
         if (result) {
             await clipboardy.write(result);
             outro(
-                `🎟️  JIRA tickets between \`${target}\` and \`${source}\`:\n\n${result}\n\n Copied to clipboard!`
+                `🎟️  Found ${result.split("\n").length} JIRA tickets between \`${target}\` and \`${source}\`:\n\n${result}\n\n Copied to clipboard!`
             );
         } else {
             outro(
